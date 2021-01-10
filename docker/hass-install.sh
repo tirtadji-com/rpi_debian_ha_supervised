@@ -23,7 +23,8 @@ chown -R $NEW_USER: /home/$NEW_USER/docker/
 # Installation portainer and watchtower
 docker run --name="portainer" -d --restart=always -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /home/$NEW_USER/docker/portainer:/data  portainer/portainer-ce
 
-# Install home-assistant + Portainer
-docker run -id --name="home-assistant" --restart=always -p 8123:8123 --net=host -e "TZ=Asia/Jakarta" -v /home/$NEW_USER/docker/home-assistant:/config -v /home/$NEW_USER/docker/home-assistant/media:/media -v /etc/letsencrypt/live:/certificate homeassistant/home-assistant
+# Install HA Supervised
+curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
+bash installer.sh --machine raspberrypi4-64
 
 echo -e "Home-Assistant installed \e[32m[DONE]\033[0m"

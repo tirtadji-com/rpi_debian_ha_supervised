@@ -103,4 +103,6 @@ EOF
 
 service ssh restart
 
+systemctl disable rpi-set-sysconf
+
 rm -r $MOTD_ROOT
