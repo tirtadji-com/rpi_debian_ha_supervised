@@ -1,0 +1,41 @@
+#!/bin/bash
+###############################################################
+#	Created by Richard Tirtadji
+#   Auto installer for Raspberry on Debian 10 + HA Supervised  
+# system-informations
+###############################################################
+# get load averages
+IFS=" " read LOAD1 LOAD5 LOAD15 <<<$(cat /proc/loadavg | awk '{ print $1,$2,$3 }')
+
+# get free memory
+IFS=" " read USED FREE TOTAL <<<$(free -htm | grep "Mem" | awk {'print $3,$4,$2'})
+
+# get processes
+PROCESS=`ps -eo user=|sort|uniq -c | awk '{ print $2 " " $1 }'`
+PROCESS_ALL=`echo "$PROCESS"| awk {'print $2'} | awk '{ SUM += $1} END { print SUM }'`
+PROCESS_ROOT=`echo "$PROCESS"| grep root | awk {'print $2'}`
+PROCESS_USER=`echo "$PROCESS"| grep -v root | awk {'print $2'} | awk '{ SUM += $1} END { print SUM }'`
+
+# get processors
+PROCESSOR_NAME=`grep "model name" /proc/cpuinfo | cut -d ' ' -f3- | awk {'print $0'} | head -1`
+PROCESSOR_COUNT=`grep -ioP 'processor\t:' /proc/cpuinfo | wc -l`
+
+# get temperature
+PROCESS_TEMP=`cat /sys/devices/virtual/thermal/thermal_zone?/temp | awk '{printf " %5.2f °C\n" , $1/1000}'`
+# get IP address
+PROCESS_IP_F=`ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ -f1`
+PROCESS_IP_S=`ip addr show eth0 | grep "inet6\b" | awk '{print $2}' | cut -d/ -f1`
+
+W="\e[0;39m"
+G="\e[1;32m"
+
+echo -e "
+${W}system info:
+$W  Distro...............: $W`cat /etc/*release | grep "PRETTY_NAME" | cut -d "=" -f 2- | sed 's/"//g'`
+$W  Kernel...............: $W`uname -sr`
+$W  Uptime...............: $W`uptime -p`
+$W  Load.................: $G$LOAD1$W (1m), $G$LOAD5$W (5m), $G$LOAD15$W (15m)
+$W  Processes............: $W $G$PROCESS_ROOT$W (root), $G$PROCESS_USER$W (user), $G$PROCESS_ALL$W (total)
+$W  CPU..................: $W$PROCESSOR_NAME ($G$PROCESSOR_COUNT$W vCPU), $G$PROCESS_TEMP$W (Temperature)
+$W  Memory...............: $G$USED$W used, $G$FREE$W free, $G$TOTAL$W total$W
+$W  Address for eth0.....: $G$PROCESS_IP_F$W (IPv4) $G$PROCESS_IP_S$W (IPv6)"

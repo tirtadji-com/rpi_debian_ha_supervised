@@ -1,0 +1,11 @@
+#!/bin/bash
+###############################################################
+#	Created by Richard Tirtadji
+#   Auto installer for Raspberry on Debian 10 + HA Supervised  
+# hostname-display
+###############################################################
+
+/usr/bin/figlet "$(hostname)" | /usr/games/lolcat -f
+
+
+
