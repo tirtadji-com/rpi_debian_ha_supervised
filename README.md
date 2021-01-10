@@ -20,11 +20,11 @@ Before you if you would like to run NGINX with your own domain make sure you ope
 ```
 # root_pw - Set a password for the root user (by default, it allows
 # for a passwordless login)
-root_pw=FooBar
+root_pw=password
 
 # root_authorized_key - Set an authorized key for a root ssh login.
 # input your public ssh key here else you wont be able to login headless
-root_authorized_key=
+root_authorized_key=ssh-rsa xxxxxxxxxxxx youremail@gmail.com
 ```
 
 **step 5**: Boot your microSD/SSD from your Raspberry Pi and find the local IP
