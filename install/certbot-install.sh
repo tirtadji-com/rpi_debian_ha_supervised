@@ -2,7 +2,7 @@
 ###############################################################
 #	Created by Richard Tirtadji
 #   Auto installer for Raspberry on Debian 10 + HA Supervised  
-# Basic script for server
+# Install Certbot
 ###############################################################
 # Install CertBot
 apt-get install certbot python-certbot-nginx -y

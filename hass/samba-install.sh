@@ -22,7 +22,7 @@ chown -R $NEW_USER: /home/$NEW_USER/docker
 
 cat <<EOF >>/etc/samba/smb.conf
 [$NEW_USER]
-  comment = Samba for ha
+  comment = Samba for Docker setup
   path = /home/$NEW_USER
   read only = no
   browsable = yes
@@ -31,6 +31,17 @@ cat <<EOF >>/etc/samba/smb.conf
   create mask = 0644
   directory mask = 0755
   force user = root
+
+[home-assistant]
+  comment = Samba for ha-supervised
+  path = /usr/share/hassio/homeassistant
+  read only = no
+  browsable = yes
+  writeable = yes
+  guest ok = no
+  create mask = 0644
+  directory mask = 0755
+  force user = root  
 EOF
 
 echo -e "$PASS\n$PASS" | smbpasswd -s -a $NEW_USER

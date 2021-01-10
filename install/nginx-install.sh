@@ -2,7 +2,7 @@
 ###############################################################
 #	Created by Richard Tirtadji
 #   Auto installer for Raspberry on Debian 10 + HA Supervised  
-# Basic script for server
+#   Install NGINX setup
 ###############################################################
 # Install ubuntu NGINX
 apt install -y nginx

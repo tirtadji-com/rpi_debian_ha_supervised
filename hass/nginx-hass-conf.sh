@@ -1,8 +1,8 @@
 #!/bin/bash
 ###############################################################
 #	Created by Richard Tirtadji
-#   Auto installer for Raspberry on Debian 10 + HA Supervised  
-# Basic script for server
+# Auto installer for Raspberry on Debian 10 + HA Supervised  
+# NGINX Configurations for HA
 ###############################################################
 HOST=$1
 DOMAIN=$2

@@ -2,7 +2,7 @@
 ###############################################################
 #	Created by Richard Tirtadji
 #   Auto installer for Raspberry on Debian 10 + HA Supervised  
-# 	Basic script for server
+# 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
 apt-get -y install unzip lsb-release wget
@@ -32,5 +32,17 @@ chmod +x /root/hass/*.sh
 chmod +x /root/docker/*.sh
 rm /root/main.zip
 /root/main.sh
+rm /root/main.sh
+rm -rf /root/motd
+/root/home-assistant.sh
+rm /root/home-assistant.sh
+rm /root/install/docker-install.sh
+rm /root/install/fail2ban-install.sh
+rm /root/install/ufw-install.sh
+rm /root/install/user-install.sh
+rm /root/hass/glances-install.sh
+rm /root/hass/samba-install.sh
+rm /root/docker/hass-install.sh
+rm /root/get-docker.sh
 
 echo -e "HA installation complete"
