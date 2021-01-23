@@ -5,7 +5,7 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get -y install unzip lsb-release wget locales
+apt-get -y install unzip lsb-release wget locales locales-all
 
 # Check Procedure
 LINUX='lsb_release -is'

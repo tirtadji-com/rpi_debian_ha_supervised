@@ -4,16 +4,14 @@
 #   Auto installer for Raspberry on Debian 10 + HA Supervised  
 #  Install Docker TasmoAdmin
 ###############################################################
-NEW_USER=$1
-
-while [[ $NEW_USER = "" ]]; do
-   read -p "Please insert the new username, eg. John: " NEW_USER
-done
+# open port 9003 for TasmoAdmin
+ufw allow 9003
+service ufw restart
 
 # Making Directory for docker container 
-mkdir /home/$NEW_USER/docker/tasmoadmin
+mkdir /usr/share/hassio/docker/tasmoadmin
 
 # Install TasmoAdmin
-docker run -d --restart=always --name=tasmoadmin -v /home/$NEW_USER/docker/tasmoadmin/data:/data -p 9003:80 raymondmm/tasmoadmin
+docker run -d --restart=always --name=tasmoadmin -v /usr/share/hassio/docker/tasmoadmin/data:/data -p 9003:80 raymondmm/tasmoadmin
 
 echo -e "TasmoAdmin installed \e[32m[DONE]\033[0m"

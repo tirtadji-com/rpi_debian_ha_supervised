@@ -4,12 +4,7 @@
 #   Auto installer for Raspberry on Debian 10 + HA Supervised  
 #  Install Docker ESPHome
 ###############################################################
-NEW_USER=$1
-TZONE=$2
-
-while [[ $NEW_USER = "" ]]; do
-   read -p "Please insert the new username, eg. John: " NEW_USER
-done
+TZONE=$1
 
 while [[ $TZONE = "" ]]; do
   read -p "Write your timezone eg, Asia/Jakarta: " TZONE

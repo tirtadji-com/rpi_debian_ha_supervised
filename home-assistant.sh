@@ -4,14 +4,7 @@
 #  Auto installer for Raspberry on Debian 10 + HA Supervised  
 # 	Basic script for server
 ###############################################################
-NEW_USER=$1
-while [[ $NEW_USER = "" ]]; do
-   read -p "Please insert the new username, eg. john: " NEW_USER
-done
-
 # Begin Installation
-/root/install/user-install.sh $NEW_USER
-
 read -p "Do you want to install NGINX (y/n): " NGX
 
 if [ "$NGX" != "${NGX#[Yy]}" ]; then
@@ -34,15 +27,15 @@ fi
 /root/install/ufw-install.sh
 
 # Install Docker
-/root/install/docker-install.sh $NEW_USER
+/root/install/docker-install.sh
 
 # Install Samba
 /root/hass/glances-install.sh
 
 # Install Samba
-/root/hass/samba-install.sh $NEW_USER
+/root/hass/samba-install.sh
 
 # Install HASS
-/root/docker/hass-install.sh $NEW_USER
+/root/docker/hass-install.sh
 
 echo -e "HASS.core Server installation \e[32m[DONE]\033[0m"
