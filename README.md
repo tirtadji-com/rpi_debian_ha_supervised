@@ -33,7 +33,7 @@ root_authorized_key=ssh-rsa xxxxxxxxxxxx youremail@gmail.com
 step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH password
 
 # Run this first and reboot your system
-`sudo apt-get update && sudo apt-get dist-upgrade -y && sudo apt autoremove -y && apt install wget -y`
+`apt-get update && apt-get dist-upgrade -y && apt autoremove -y && apt install wget -y`
 
 **step 6**: Then execute this from your terminal
 
