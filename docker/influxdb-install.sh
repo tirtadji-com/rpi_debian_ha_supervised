@@ -18,7 +18,7 @@ service ufw restart
 mkdir /home/$NEW_USER/docker/influxdb
 
 # Install influxdb
-docker run --rm influxdb influxd config | sudo tee /etc/influxdb/influxdb.conf > /dev/null
+docker run --rm influxdb influxd config | tee /etc/influxdb/influxdb.conf > /dev/null
 docker run -d -p 8086:8086 --restart=always --net=host --name="influxdb" -v /etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf -v /home/$NEW_USER/docker/influxdb:/var/lib/influxdb influxdb -config /etc/influxdb/influxdb.conf
 
 echo -e "InfluxDB installed \e[32m[DONE]\033[0m"
