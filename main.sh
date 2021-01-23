@@ -13,10 +13,6 @@ while [[ $TZONE = "" ]]; do
   read -p "Write your timezone eg, Asia/Jakarta: " TZONE
 done
 
-while [[ $PUB_KEY = "" ]]; do
-  read -p "Write your public key (long string of code starting with ssh-rsa), eg. ssh-rsa: " PUB_KEY
-done
-
 while [[ $HOST_NAME = "" ]]; do
   read -p "The name of your server host eg. Home-Assistant: " HOST_NAME
 done
