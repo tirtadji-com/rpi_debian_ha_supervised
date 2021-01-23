@@ -7,6 +7,7 @@ Home-Assistant Supervisor on Raspberry Pi 4 running Debian 10 complies with ADR-
 - Debian 10 for RPI [download here](https://raspi.debian.net/tested-images/)
 - Raspbian Imager [download here](https://www.raspberrypi.org/software/)
 - Your public ssh keys (please google it on how to create one for you)
+- If you did not used SSH Key you will need monitor and mouse and keyboard
 
 # WARNING!
 Before you if you would like to run NGINX with your own domain make sure you open your router port 80/443 and directed to your RPI-ip else you dont need to install or running NGINX
@@ -22,6 +23,7 @@ Before you if you would like to run NGINX with your own domain make sure you ope
 # for a passwordless login)
 root_pw=password
 
+# DO NOT Changes this line if you dont want to used SSH Key
 # root_authorized_key - Set an authorized key for a root ssh login.
 # input your public ssh key here else you wont be able to login headless
 root_authorized_key=ssh-rsa xxxxxxxxxxxx youremail@gmail.com

@@ -5,8 +5,9 @@
 # 	Main installation for RPI
 ###############################################################
 TZONE=$1
-PUB_KEY=$2
-HOST_NAME=$3
+KEY_YES=$2
+PUB_KEY=$3
+HOST_NAME=$4
 
 while [[ $TZONE = "" ]]; do
   read -p "Write your timezone eg, Asia/Jakarta: " TZONE
@@ -34,6 +35,13 @@ systemctl disable ModemManager
 
 systemctl stop ModemManager
 
+read -p "Do you want to used SSH Key for a better security? (y/n): " KEY_YES
+
+if [ "$KEY_YES" != "${KEY_YES#[Yy]}" ]; then
+
+while [[ $PUB_KEY = "" ]]; do
+  read -p "Write your public key (long string of code starting with ssh-rsa), eg. ssh-rsa: " PUB_KEY
+done
 
 # Continue installations
 SSH_ROOT=~/.ssh
@@ -53,6 +61,19 @@ sed -i 's/#\?\(Banner\s*\).*$/\1 \/etc\/issue.net/' /etc/ssh/sshd_config
 
 echo "KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256" >> /etc/ssh/sshd_config
 echo "MACs umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512" >> /etc/ssh/sshd_config
+
+else
+
+# Continue installations
+sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 yes/' /etc/ssh/sshd_config
+sed -i 's/#\?\(PermitEmptyPasswords\s*\).*$/\1 yes/' /etc/ssh/sshd_config
+sed -i 's/#\?\(PasswordAuthentication\s*\).*$/\1 no/' /etc/ssh/sshd_config
+sed -i 's/#\?\(Banner\s*\).*$/\1 \/etc\/issue.net/' /etc/ssh/sshd_config
+
+echo "KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256" >> /etc/ssh/sshd_config
+echo "MACs umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512" >> /etc/ssh/sshd_config
+
+fi
 
 MOTD_ROOT=/root/motd
 
