@@ -32,10 +32,10 @@ fi
 # Install Samba
 /root/hass/glances-install.sh
 
-# Install Samba
-/root/hass/samba-install.sh
-
 # Install HASS
 /root/docker/hass-install.sh
+
+# Install Samba
+/root/hass/samba-install.sh
 
 echo -e "HASS.core Server installation \e[32m[DONE]\033[0m"

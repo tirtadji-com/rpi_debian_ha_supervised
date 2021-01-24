@@ -6,6 +6,7 @@
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
 apt-get -y install unzip lsb-release wget locales locales-all
+apt-get -y install avahi-daemon avahi-discover libnss-mdns
 
 # Check Procedure
 LINUX='lsb_release -is'

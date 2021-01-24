@@ -8,7 +8,8 @@
 ufw allow 8006
 service ufw restart
 
-# Making Directory for docker container 
+# Making Directory for docker container
+mkdir /etc/influxdb 
 mkdir /usr/share/hassio/docker/influxdb
 
 # Install influxdb
