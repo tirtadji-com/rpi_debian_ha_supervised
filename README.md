@@ -13,9 +13,9 @@ Home-Assistant Supervisor on Raspberry Pi 4 running Debian 10 complies with ADR-
 Before you if you would like to run NGINX with your own domain make sure you open your router port 80/443 and directed to your RPI-ip else you dont need to install or running NGINX
 
 # Installation:
-**step 1**: Burn your microSD or SSD using Raspberry Pi Imager with Debian images
-**step 2**: Detach your microSD/SSD and reattached it to your computer
-**step 3**: Now go to your microSD/SSD directory `boot` and be sure to type using terminal `touch ssh` (we are going to install HA headless)
+**step 1**: Burn your microSD or SSD using Raspberry Pi Imager with Debian images  
+**step 2**: Detach your microSD/SSD and reattached it to your computer  
+**step 3**: Now go to your microSD/SSD directory `boot` and be sure to type using terminal `touch ssh` (we are going to install HA headless)  
 **step 4**: Edit `sysconf.txt` and be sure to add this informations
 
 ```
