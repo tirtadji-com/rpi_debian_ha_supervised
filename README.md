@@ -1,6 +1,10 @@
 # This installation will help you install
 Home-Assistant Supervisor on Raspberry Pi 4 running Debian 10 complies with ADR-0014. Additional uncomplies are NGINX, Certbot, Glance, Portainer and other docker container should you install it. I just dont like to run my docker under supervisor account.
 
+# Youtube Video to help you
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yMEryGN_2MY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
 # Requirement:
 - Rasberry Pi 4
 - microSD or SSD Drive (which compatible with linux)
