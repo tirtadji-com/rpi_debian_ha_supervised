@@ -10,7 +10,7 @@ apt install glances -y
 service glances stop
 
 # Allowing glances on webs
-sed -i -r -e 's/-s/--disable-plugin cloud -w/g' /lib/systemd/system/glances.service
+sed -i -r -e 's/-s -B 127.0.0.1/--disable-plugin cloud -w/g' /lib/systemd/system/glances.service
 
 # Restart services
 systemctl daemon-reload
