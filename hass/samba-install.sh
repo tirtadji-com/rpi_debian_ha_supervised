@@ -29,6 +29,6 @@ EOF
 echo -e "$PASS\n$PASS" | smbpasswd -s -a root
 
 service smbd restart
-ufw allow Samba
+#ufw allow Samba
 
 echo -e "Samba Installed \e[32m[DONE]\033[0m"

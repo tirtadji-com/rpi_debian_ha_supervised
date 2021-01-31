@@ -40,10 +40,8 @@ rm /root/home-assistant.sh
 rm /root/install/docker-install.sh
 rm /root/install/fail2ban-install.sh
 rm /root/install/ufw-install.sh
-rm /root/install/user-install.sh
 rm /root/hass/glances-install.sh
 rm /root/hass/samba-install.sh
 rm /root/docker/hass-install.sh
-rm /root/get-docker.sh
 
 echo -e "HA installation complete"

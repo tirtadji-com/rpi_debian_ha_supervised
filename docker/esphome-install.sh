@@ -11,9 +11,9 @@ while [[ $TZONE = "" ]]; do
 done
 
 # open port 6052 & 6123 for HA
-ufw allow 6052
-ufw allow 6123
-service ufw restart
+#ufw allow 6052
+#ufw allow 6123
+#service ufw restart
 
 
 # Making Directory for docker container 

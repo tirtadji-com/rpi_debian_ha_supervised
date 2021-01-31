@@ -5,8 +5,8 @@
 #  Install Docker Grafana
 ###############################################################
 # open port 3000 for HA
-ufw allow 3000
-service ufw restart
+#ufw allow 3000
+#service ufw restart
 
 # Making Directory for docker container 
 mkdir  /usr/share/hassio/docker/grafana

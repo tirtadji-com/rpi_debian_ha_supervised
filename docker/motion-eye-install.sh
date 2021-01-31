@@ -5,8 +5,8 @@
 #  Install Docker MotionEye
 ###############################################################
 # open port 8765 for HA
-ufw allow 8765
-service ufw restart
+#ufw allow 8765
+#service ufw restart
 
 # Making Directory for docker container 
 mkdir /usr/share/hassio/docker/motioneye

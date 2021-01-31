@@ -5,8 +5,8 @@
 #  Install Docker TasmoAdmin
 ###############################################################
 # open port 9003 for TasmoAdmin
-ufw allow 9003
-service ufw restart
+#ufw allow 9003
+#service ufw restart
 
 # Making Directory for docker container 
 mkdir /usr/share/hassio/docker/tasmoadmin

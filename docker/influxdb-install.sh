@@ -5,8 +5,8 @@
 #  Install Docker InFlux DB
 ###############################################################
 # open port 8006 for HA
-ufw allow 8006
-service ufw restart
+#ufw allow 8006
+#service ufw restart
 
 # Making Directory for docker container
 mkdir /etc/influxdb 

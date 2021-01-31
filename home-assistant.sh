@@ -24,7 +24,7 @@ fi
 /root/install/fail2ban-install.sh
 
 # Install Fail2Ban
-/root/install/ufw-install.sh
+#/root/install/ufw-install.sh
 
 # Install Docker
 /root/install/docker-install.sh
