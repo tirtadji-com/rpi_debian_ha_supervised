@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################################################
 #	Created by Richard Tirtadji
-#   Auto installer for Debian 10 + HA Supervised  
+#   Auto installer for Raspberry on Debian 10 + HA Supervised  
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
@@ -22,7 +22,7 @@ if [[ $LINUX -ne Debian ]]; then
 fi
 cd ~
 
-wget https://github.com/tirtadji-com/debian-ha-supervised/archive/main.zip
+wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip
 unzip /root/main.zip -d /root/
 result=`ls -F /root/ | grep /`
 mv /root/$result/* /root/
