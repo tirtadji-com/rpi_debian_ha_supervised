@@ -1,8 +1,8 @@
 #!/bin/bash
 ###############################################################
 #	  Created by Richard Tirtadji
-#   Auto installer for Raspberry on Debian 10 + HA Supervised  
-# 	Main installation for RPI
+#   Auto installer for Debian 10 + HA Supervised  
+# 	Main installation for Server
 ###############################################################
 TZONE=$1
 KEY_YES=$2
@@ -16,10 +16,6 @@ done
 while [[ $HOST_NAME = "" ]]; do
   read -p "The name of your server host eg. Home-Assistant: " HOST_NAME
 done
-
-# setup locales choose en-US.UTF-8
-locale-gen "en_US.UTF-8"
-dpkg-reconfigure locales
 
 # Setup time for my timezone
 timedatectl set-timezone $TZONE
@@ -123,7 +119,5 @@ cat <<EOF >/etc/issue.net
 EOF
 
 service ssh restart
-
-systemctl disable rpi-set-sysconf
 
 rm -r $MOTD_ROOT
