@@ -48,6 +48,8 @@ step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH pass
 # Execute the script
 `bash install.sh`
 
+# Default installation is for HA + Portainer
+You can access **portainer** by running it on your browser at http://<YOUR-IP>:9000
 
 # Install Additional Docker Apps
 If you want to install more docker application for your Home-Assistant then you will have to run each individual script inside docker directory accept for hass-install.sh (remember this installation will not complies with ADR-0014)
@@ -55,14 +57,12 @@ If you want to install more docker application for your Home-Assistant then you 
 To install simply by `cd /root/docker` and type `./[docker-apps]-install.sh`
 **Docker-Apps:**
 
-- Portainer running on port 9000
 - Grafana running on port 3000
 - ESP Home running on port 6052
 - InfluxDB running on port 8086
 - MotionEye running on port 8765
 - MQTT running on port 1883
 - TasmoAdmin running on port 9003
-- WatchTower
 
 **Non Docker-Apps:**
 
