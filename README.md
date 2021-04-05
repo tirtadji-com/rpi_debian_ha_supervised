@@ -36,6 +36,9 @@ root_authorized_key=ssh-rsa xxxxxxxxxxxx youremail@gmail.com
 **step 5**: Boot your microSD/SSD from your Raspberry Pi and find the local IP
 step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH password
 
+# <span style="color: red;">BUGS UPDATE</span>
+Currently there are bugs on Debian Raspberry which will disable boot via SSD, so until this is fixed please run this command once before you do anything `apt-mark hold linux-image-arm64`
+
 # Run this first and reboot your system
 `apt-get update && apt-get dist-upgrade -y && apt autoremove -y && apt install wget -y`
 
