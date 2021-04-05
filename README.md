@@ -14,7 +14,7 @@ Home-Assistant Supervisor on Raspberry Pi 4 running Debian 10 complies with ADR-
 - If you did not used SSH Key you will need monitor and mouse and keyboard
 
 # WARNING!
-Before you if you would like to run NGINX with your own domain make sure you open your router port 80/443 and directed to your RPI-ip else you dont need to install or running NGINX
+If you would like to run NGINX with your own domain make sure you open your router port 80/443 and directed to your RPI-ip else you dont need to install or running NGINX
 
 # Installation:
 **step 1**: Burn your microSD or SSD using Raspberry Pi Imager with Debian images  
