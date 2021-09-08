@@ -1,3 +1,5 @@
+# WARNING THE SCRIPT is Not working at this moment. Please do not used it. I'm investigating which part broke the Docker.
+
 # This installation will help you install
 Home-Assistant Supervisor on Raspberry Pi 4 running Debian 11 complies with ADR-0014. Additional uncomplies are NGINX, Certbot, Glance, Portainer and other docker container should you install it. I just dont like to run my docker under supervisor account.
 
