@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################################################
 #	Created by Richard Tirtadji
-#   Auto installer for Raspberry on Debian 10 + HA Supervised  
+#   Auto installer for Raspberry on Debian 11 + HA Supervised  
 #  Install Docker
 ###############################################################
 ## Begin Docker Installation

@@ -1,12 +1,11 @@
 #!/bin/bash
 ###############################################################
 #	Created by Richard Tirtadji
-#   Auto installer for Raspberry on Debian 10 + HA Supervised  
+#   Auto installer for Raspberry on Debian 11 + HA Supervised  
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
 apt-get -y install unzip lsb-release wget locales locales-all
-apt-get -y install avahi-daemon avahi-discover libnss-mdns
 
 # Check Procedure
 LINUX='lsb_release -is'

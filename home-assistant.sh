@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################################################
 #	Created by Richard Tirtadji
-#  Auto installer for Raspberry on Debian 10 + HA Supervised  
+#  Auto installer for Raspberry on Debian 11 + HA Supervised  
 # 	Basic script for server
 ###############################################################
 # Begin Installation
@@ -23,13 +23,14 @@ fi
 # Install Fail2Ban
 /root/install/fail2ban-install.sh
 
-# Install Fail2Ban
-#/root/install/ufw-install.sh
+# Install AgentOS
+wget https://github.com/home-assistant/os-agent/releases/download/1.1.1/os-agent_1.1.1_linux_aarch64.deb
+dpkg -i os-agent_1.1.1_linux_aarch64.deb
 
 # Install Docker
 /root/install/docker-install.sh
 
-# Install Samba
+# Install Glances
 /root/hass/glances-install.sh
 
 # Install HASS

@@ -1,5 +1,8 @@
 # This installation will help you install
-Home-Assistant Supervisor on Raspberry Pi 4 running Debian 10 complies with ADR-0014. Additional uncomplies are NGINX, Certbot, Glance, Portainer and other docker container should you install it. I just dont like to run my docker under supervisor account.
+Home-Assistant Supervisor on Raspberry Pi 4 running Debian 11 complies with ADR-0014. Additional uncomplies are NGINX, Certbot, Glance, Portainer and other docker container should you install it. I just dont like to run my docker under supervisor account.
+
+*&UPDATE**
+Home-Assistant is now support Debian 11 Bulleyes, so I need to make some adjustment to the code. My old youtube is now obsolete, so until I have time to create a new one you guys can have it as a starting point.
 
 # Youtube Video to help you
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/yMEryGN_2MY/0.jpg)](https://www.youtube.com/watch?v=yMEryGN_2MY/0)
@@ -8,7 +11,7 @@ Home-Assistant Supervisor on Raspberry Pi 4 running Debian 10 complies with ADR-
 # Requirement:
 - Rasberry Pi 4
 - microSD or SSD Drive (which compatible with linux)
-- Debian 10 for RPI [download here](https://raspi.debian.net/tested-images/)
+- Debian 11 Bulleye for RPI [download here](https://raspi.debian.net/tested-images/)
 - Raspbian Imager [download here](https://www.raspberrypi.org/software/)
 - Your public ssh keys (please google it on how to create one for you)
 - If you did not used SSH Key you will need monitor and mouse and keyboard
@@ -35,9 +38,6 @@ root_authorized_key=ssh-rsa xxxxxxxxxxxx youremail@gmail.com
 
 **step 5**: Boot your microSD/SSD from your Raspberry Pi and find the local IP
 step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH password
-
-# <span style="color: red;">BUGS UPDATE</span>
-Currently there are bugs on Debian Raspberry which will disable boot via SSD, so until this is fixed please run this command once before you do anything `apt-mark hold linux-image-arm64`
 
 # Run this first and reboot your system
 `apt-get update && apt-get dist-upgrade -y && apt autoremove -y && apt install wget -y`

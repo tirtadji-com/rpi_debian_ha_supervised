@@ -1,7 +1,7 @@
 #!/bin/bash
 ###############################################################
 #	  Created by Richard Tirtadji
-#   Auto installer for Raspberry on Debian 10 + HA Supervised  
+#   Auto installer for Raspberry on Debian 11 + HA Supervised  
 # 	Main installation for RPI
 ###############################################################
 TZONE=$1
@@ -29,7 +29,7 @@ apt-get update && apt-get dist-upgrade -y && apt autoremove -y
 apt-get install -y git figlet lolcat debconf-utils curl gnupg2 ca-certificates apt-transport-https
 
 # home-assistant specific installation for supervised method
-apt-get install -y software-properties-common apparmor-utils dbus jq network-manager
+apt-get install -y software-properties-common apparmor-utils dbus jq network-manager udisks2 libglib2.0-bin
 
 systemctl disable ModemManager
 
