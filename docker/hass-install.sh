@@ -11,8 +11,8 @@ systemctl disable ModemManager
 systemctl stop ModemManager
 
 # Install HA Supervised
-#curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
-#bash installer.sh --machine raspberrypi4-64
-curl -sL "https://raw.githubusercontent.com/Kanga-Who/home-assistant/master/supervised-installer.sh" | bash -s -- -m raspberrypi4-64
+curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
+bash installer.sh --machine raspberrypi4-64
+#curl -sL "https://raw.githubusercontent.com/Kanga-Who/home-assistant/master/supervised-installer.sh" | bash -s -- -m raspberrypi4-64
 
 echo -e "Home-Assistant installed \e[32m[DONE]\033[0m"
