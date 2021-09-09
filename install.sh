@@ -5,7 +5,7 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get -y install unzip lsb-release wget locales locales-all git figlet lolcat
+apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat
 
 # Check Procedure
 LINUX='lsb_release -is'
