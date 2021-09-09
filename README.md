@@ -1,12 +1,7 @@
-# WARNING THE SCRIPT is Not working at this moment. Please do not used it. I'm investigating which part broke the Docker.
-
-# This installation will help you install
+# This installation will help you install HA Superviser on Debian 11
 Home-Assistant Supervisor on Raspberry Pi 4 running Debian 11 complies with ADR-0014. Additional uncomplies are NGINX, Certbot, Glance, Portainer and other docker container should you install it. I just dont like to run my docker under supervisor account.
 
-*&UPDATE**
-Home-Assistant is now support Debian 11 Bulleyes, so I need to make some adjustment to the code. My old youtube is now obsolete, so until I have time to create a new one you guys can have it as a starting point.
-
-# Youtube Video to help you
+# Old Youtube Video to help you
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/yMEryGN_2MY/0.jpg)](https://www.youtube.com/watch?v=yMEryGN_2MY/0)
 
 

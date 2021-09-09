@@ -5,7 +5,7 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat
+apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
 
 # Check Procedure
 LINUX='lsb_release -is'
@@ -40,8 +40,10 @@ rm /root/install/docker-install.sh
 rm /root/install/fail2ban-install.sh
 rm /root/hass/glances-install.sh
 rm /root/hass/samba-install.sh
-rm /root/hass/agentos-install.sh
+rm /root/hass/osagent-install.sh
 rm /root/docker/hass-install.sh
 rm /root/docker/portainer-install.sh
 
 echo -e "HA installation complete"
+
+reboot now
