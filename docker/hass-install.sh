@@ -5,7 +5,8 @@
 #  Install Docker HA Supervisor
 ###############################################################
 # Prerequisite Apps for HA
-apt-get install -y software-properties-common apparmor-utils dbus jq network-manager udisks2 libglib2.0-bin
+apt-get install -y software-properties-common apparmor-utils dbus jq network-manager
+
 systemctl disable ModemManager
 systemctl stop ModemManager
 
