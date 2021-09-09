@@ -23,18 +23,20 @@ fi
 # Install Fail2Ban
 /root/install/fail2ban-install.sh
 
-# Install AgentOS
-wget https://github.com/home-assistant/os-agent/releases/download/1.1.1/os-agent_1.1.1_linux_aarch64.deb
-dpkg -i os-agent_1.1.1_linux_aarch64.deb
-
 # Install Docker
 /root/install/docker-install.sh
 
-# Install Glances
-/root/hass/glances-install.sh
+# Install AgentOS
+/root/hass/osagent-install.sh
 
 # Install HASS
 /root/docker/hass-install.sh
+
+# Install Portainer
+/root/docker/portainer-install.sh
+
+# Install Glances
+/root/hass/glances-install.sh
 
 # Install Samba
 /root/hass/samba-install.sh

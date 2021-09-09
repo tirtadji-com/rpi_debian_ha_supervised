@@ -24,17 +24,7 @@ dpkg-reconfigure locales
 # Setup time for my timezone
 timedatectl set-timezone $TZONE
 
-# Ubuntu Update
-apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get install -y git figlet lolcat debconf-utils curl gnupg2 ca-certificates apt-transport-https
-
-# home-assistant specific installation for supervised method
-apt-get install -y software-properties-common apparmor-utils dbus jq network-manager udisks2 libglib2.0-bin
-
-systemctl disable ModemManager
-
-systemctl stop ModemManager
-
+# Implement SSH Keys
 read -p "Do you want to used SSH Key for a better security? (y/n): " KEY_YES
 
 if [ "$KEY_YES" != "${KEY_YES#[Yy]}" ]; then

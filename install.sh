@@ -5,7 +5,7 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get -y install unzip lsb-release wget locales locales-all
+apt-get -y install unzip lsb-release wget locales locales-all git figlet lolcat debconf-utils curl gnupg2 ca-certificates apt-transport-https
 
 # Check Procedure
 LINUX='lsb_release -is'
@@ -38,9 +38,10 @@ rm -rf /root/motd
 rm /root/home-assistant.sh
 rm /root/install/docker-install.sh
 rm /root/install/fail2ban-install.sh
-rm /root/install/ufw-install.sh
 rm /root/hass/glances-install.sh
 rm /root/hass/samba-install.sh
+rm /root/hass/agentos-install.sh
 rm /root/docker/hass-install.sh
+rm /root/docker/portainer-install.sh
 
 echo -e "HA installation complete"
