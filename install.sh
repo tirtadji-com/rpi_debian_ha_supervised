@@ -5,20 +5,20 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get upgrade -y && apt autoremove -y
-apt-get -y install unzip
+apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
 
-# Check Procedure
-# LINUX='lsb_release -is'
+Check Procedure
+LINUX='lsb_release -is'
 
-# if [ $(id -u) -ne 0 ]; then
-# 	echo "Run this script as a Root user only" >&2
-# 	exit 1
-# fi
+if [ $(id -u) -ne 0 ]; then
+	echo "Run this script as a Root user only" >&2
+	exit 1
+fi
 
-# if [[ $LINUX -ne Debian ]]; then
-# 	echo "This script usage only for Debian" >&2
-# 	exit 1
-# fi
+if [[ $LINUX -ne Debian ]]; then
+	echo "This script usage only for Debian" >&2
+	exit 1
+fi
 cd ~
 
 wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip

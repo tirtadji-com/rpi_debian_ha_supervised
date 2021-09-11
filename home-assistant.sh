@@ -10,11 +10,11 @@
 # Install HASS
 /root/docker/hass-install.sh
 
+# Temp Fixed
+/root/fixed.sh
+
 # Install AgentOS
 /root/hass/osagent-install.sh
-
-# Temp Fixed
-#/root/fixed.sh
 
 # Install Portainer
 /root/docker/portainer-install.sh
