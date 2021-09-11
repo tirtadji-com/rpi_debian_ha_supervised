@@ -5,7 +5,7 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get upgrade -y && apt autoremove -y
-apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
+apt-get -y install sudo curl unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
 
 Check Procedure
 LINUX='lsb_release -is'
