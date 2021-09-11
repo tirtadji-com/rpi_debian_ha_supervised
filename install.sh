@@ -4,21 +4,21 @@
 #   Auto installer for Raspberry on Debian 11 + HA Supervised  
 # 	Installer scripts
 ###############################################################
-apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get -y install sudo unzip lsb-release git
+apt-get update && apt-get upgrade -y && apt autoremove -y
+apt-get -y install unzip
 
 # Check Procedure
-LINUX='lsb_release -is'
+# LINUX='lsb_release -is'
 
-if [ $(id -u) -ne 0 ]; then
-	echo "Run this script as a Root user only" >&2
-	exit 1
-fi
+# if [ $(id -u) -ne 0 ]; then
+# 	echo "Run this script as a Root user only" >&2
+# 	exit 1
+# fi
 
-if [[ $LINUX -ne Debian ]]; then
-	echo "This script usage only for Debian" >&2
-	exit 1
-fi
+# if [[ $LINUX -ne Debian ]]; then
+# 	echo "This script usage only for Debian" >&2
+# 	exit 1
+# fi
 cd ~
 
 wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip
