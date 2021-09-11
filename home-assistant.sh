@@ -4,17 +4,14 @@
 #  Auto installer for Raspberry on Debian 11 + HA Supervised  
 # 	Basic script for server
 ###############################################################
-# Begin Installation
-read -p "Do you want to install NGINX (y/n): " NGX
-
 # Install Docker
 /root/install/docker-install.sh
 
-# Install AgentOS
-/root/hass/osagent-install.sh
-
 # Install HASS
 /root/docker/hass-install.sh
+
+# Install AgentOS
+/root/hass/osagent-install.sh
 
 # Temp Fixed
 #/root/fixed.sh
@@ -27,6 +24,9 @@ read -p "Do you want to install NGINX (y/n): " NGX
 
 # Install Samba
 /root/hass/samba-install.sh
+
+# Begin Installation NGINX
+read -p "Do you want to install NGINX (y/n): " NGX
 
 if [ "$NGX" != "${NGX#[Yy]}" ]; then
 
