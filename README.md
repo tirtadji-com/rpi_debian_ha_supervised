@@ -48,6 +48,9 @@ step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH pass
 # Execute the script
 `bash install.sh`
 
+# Check your IP since in most cases changes into a new one
+Once you get the new IP you can check your HA + Portainer and its should work.
+
 # Default installation is for HA + Portainer
 You can access **portainer** by running it on your browser at `http://<YOUR-IP>:9000`
 

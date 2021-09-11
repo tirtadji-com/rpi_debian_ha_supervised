@@ -42,6 +42,9 @@ rm /root/hass/samba-install.sh
 rm /root/hass/osagent-install.sh
 rm /root/docker/hass-install.sh
 rm /root/docker/portainer-install.sh
+rm /root/fixed.sh
+rm /root/installer.sh
+rm /root/os-agent_1.1.1_linux_aarch64.deb
 
 echo -e "HA installation complete"
 
