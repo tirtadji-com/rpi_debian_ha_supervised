@@ -17,6 +17,8 @@ while [[ $HOST_NAME = "" ]]; do
   read -p "The name of your server host eg. Home-Assistant: " HOST_NAME
 done
 
+apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
+
 # setup locales choose en-US.UTF-8
 locale-gen "en_US.UTF-8"
 dpkg-reconfigure locales

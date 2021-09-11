@@ -7,6 +7,27 @@
 # Begin Installation
 read -p "Do you want to install NGINX (y/n): " NGX
 
+# Install Docker
+/root/install/docker-install.sh
+
+# Install AgentOS
+/root/hass/osagent-install.sh
+
+# Install HASS
+/root/docker/hass-install.sh
+
+# Temp Fixed
+#/root/fixed.sh
+
+# Install Portainer
+/root/docker/portainer-install.sh
+
+# Install Glances
+/root/hass/glances-install.sh
+
+# Install Samba
+/root/hass/samba-install.sh
+
 if [ "$NGX" != "${NGX#[Yy]}" ]; then
 
 # Install NGINX
@@ -23,25 +44,6 @@ fi
 # Install Fail2Ban
 /root/install/fail2ban-install.sh
 
-# Install Docker
-/root/install/docker-install.sh
-
-# Install AgentOS
-/root/hass/osagent-install.sh
-
-# Install HASS
-/root/docker/hass-install.sh
-
-# Temp Fixed
-/root/fixed.sh
-
-# Install Portainer
-/root/docker/portainer-install.sh
-
-# Install Glances
-/root/hass/glances-install.sh
-
-# Install Samba
-/root/hass/samba-install.sh
+/root/main.sh
 
 echo -e "HASS.core Server installation \e[32m[DONE]\033[0m"

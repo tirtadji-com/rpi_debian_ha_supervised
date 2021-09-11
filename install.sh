@@ -5,7 +5,8 @@
 # 	Installer scripts
 ###############################################################
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y
-apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
+#apt-get -y install sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
+apt-get -y install sudo unzip lsb-release git
 
 # Check Procedure
 LINUX='lsb_release -is'
@@ -31,10 +32,9 @@ chmod +x /root/install/*.sh
 chmod +x /root/hass/*.sh
 chmod +x /root/docker/*.sh
 rm /root/main.zip
-/root/main.sh
+/root/home-assistant.sh
 rm /root/main.sh
 rm -rf /root/motd
-/root/home-assistant.sh
 rm /root/home-assistant.sh
 rm /root/install/docker-install.sh
 rm /root/install/fail2ban-install.sh
