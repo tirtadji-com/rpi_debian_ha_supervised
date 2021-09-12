@@ -70,20 +70,10 @@ chmod +x /root/hass/*.sh
 chmod +x /root/docker/*.sh
 rm /root/main.zip
 /root/home-assistant.sh
-rm /root/main.sh
-rm -rf /root/motd
-rm /root/home-assistant.sh
-rm /root/install/docker-install.sh
-rm /root/install/fail2ban-install.sh
-rm /root/hass/glances-install.sh
-rm /root/hass/samba-install.sh
-rm /root/hass/osagent-install.sh
-rm /root/docker/hass-install.sh
-rm /root/docker/portainer-install.sh
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/motd /root/install.sh /var/{cache,log}/* /var/lib/apt/lists/*
 
 # Reboot Now
 msg "The System will REBOOT..."
