@@ -29,34 +29,35 @@ function msg() {
 }
 
 # Update Debian 11
-msg "Updating your Debian 11"
+msg "Installation begin and it will take a several minute to complete"
 apt-get update >/dev/null
 apt-get dist-upgrade -y &>/dev/null
 apt autoremove -y &>/dev/null
+msg "Updating your Debian 11 - \e[32m[DONE]\033[0m"
 
 # Check Procedure
-msg "Installing and Checking Prerequisite aplication"
 set +u
 OS_NAME='lsb_release -is'
 CODE_NAME='lsb_release -cs'
 
 if [ $(id -u) -ne 0 ]; then
-	echo "Run this script as a Root user only" >&2
+  msg "You must run this script as a ROOT"
 	exit 1
 fi
 
 if [[ $OS_NAME -ne Debian ]]; then
-	echo "This script usage only for Debian" >&2
+  msg "You must run this script on Debian Machine"
 	exit 1
 fi
 
 if [[ $CODE_NAME -ne bullseye ]]; then
-	echo "This script usage only for Debian" >&2
+  msg "The script support Debian 11 aka bullseye only"
 	exit 1
 fi
 
 apt-get -y install sudo unzip lsb-release git &>/dev/null
 cd ~
+msg "Installing and Checking Prerequisite application - \e[32m[DONE]\033[0m"
 
 wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip &>/dev/null
 unzip /root/main.zip -d /root/ &>/dev/null
@@ -85,5 +86,5 @@ msg "Cleanup..."
 rm -rf /root/install.sh /var/{cache,log}/* /var/lib/apt/lists/*
 
 # Reboot Now
-msg "REBOOT..."
+msg "The System will REBOOT..."
 reboot now

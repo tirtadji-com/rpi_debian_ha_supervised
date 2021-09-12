@@ -1,9 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ###############################################################
 #	Created by Richard Tirtadji
-#  Auto installer for Raspberry on Debian 11 + HA Supervised  
-# 	Basic script for server
+#   Auto installer for Raspberry on Debian 11 + HA Supervised  
+# 	Installer scripts
+# 	Additional script made by tteck
 ###############################################################
+function msg() {
+  local TEXT="$1"
+  echo -e "$TEXT"
+}
+
 # Install Docker
 /root/install/docker-install.sh
 
@@ -46,4 +52,6 @@ fi
 
 /root/main.sh
 
-echo -e "HASS.core Server installation \e[32m[DONE]\033[0m"
+# Cleanup container
+msg "Cleanup..."
+rm -rf /root/install/home-assistant.sh

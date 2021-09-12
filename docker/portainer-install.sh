@@ -1,14 +1,43 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ###############################################################
 #	Created by Richard Tirtadji
 #   Auto installer for Raspberry on Debian 11 + HA Supervised  
-#  Install Docker Portainer
+# 	Installer scripts
+# 	Additional script made by tteck
 ###############################################################
+# Setup script environment
+set -o errexit  #Exit immediately if a pipeline returns a non-zero status
+set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
+set -o nounset  #Treat unset variables as an error
+set -o pipefail #Pipe will exit with last non-zero status if applicable
+shopt -s expand_aliases
+alias die='EXIT=$? LINE=$LINENO error_exit'
+trap die ERR
+trap 'die "Script interrupted."' INT
+
+function error_exit() {
+  trap - ERR
+  local DEFAULT='Unknown failure occured.'
+  local REASON="\e[97m${1:-$DEFAULT}\e[39m"
+  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  msg "$FLAG $REASON"
+  exit $EXIT
+}
+function msg() {
+  local TEXT="$1"
+  echo -e "$TEXT"
+}
+
+clear
 # Making Directory for docker container 
 mkdir /usr/share/hassio/docker
 mkdir /usr/share/hassio/docker/portainer
+msg "Prepare directory for portainer - \e[32m[DONE]\033[0m"
 
 # Installation portainer and watchtower
 docker run --name="portainer" -d --restart=always -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/share/hassio/docker/portainer:/data portainer/portainer-ce
+msg "Installation Portainer - \e[32m[DONE]\033[0m"
 
-echo -e "Portainer installed \e[32m[DONE]\033[0m"
+# Cleanup container
+msg "Cleanup..."
+rm -rf /root/docker/portainer-install.sh /var/{cache,log}/* /var/lib/apt/lists/*

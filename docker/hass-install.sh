@@ -30,21 +30,27 @@ function msg() {
 
 clear
 # Prerequisite Apps for HA
-msg "HA Supervised Prerequisite Apps..."
-apt-get install -y software-properties-common apparmor-utils dbus jq network-manager
+apt-get install -y software-properties-common apparmor-utils dbus jq network-manager &>/dev/null
+msg "Install HA Supervised Prerequisite Apps - \e[32m[DONE]\033[0m"
 
-msg "Disable and stop ModemManager..."
-systemctl disable ModemManager
-systemctl stop ModemManager
+systemctl disable ModemManager >/dev/null
+systemctl stop ModemManager >/dev/null
+msg "Disable and stop ModemManager - \e[32m[DONE]\033[0m"
+
+rm -rf /etc/machine-id
+rm -rf /var/lib/dbus/machine-id
+dbus-uuidgen --ensure=/etc/machine-id
+dbus-uuidgen --ensure
+service docker restart
+msg "Fixed machine-id and restart docker - \e[32m[DONE]\033[0m"
+
+service docker restart
 
 # Install HA Supervised
-msg "Installing HA Superviser"
-curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh
+curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh &>/dev/null
 bash installer.sh --machine raspberrypi4-64
-#curl -sL "https://raw.githubusercontent.com/Kanga-Who/home-assistant/master/supervised-installer.sh" | bash -s -- -m raspberrypi4-64
+msg "HA Superviser Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/docker/hass-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
-
-msg "HA Supervisor Installed..."

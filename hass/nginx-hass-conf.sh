@@ -163,5 +163,7 @@ fi
 
 service nginx restart
 
-echo -e "NGINX PHP Setup \e[32m[DONE]\033[0m"
+# Cleanup container
+# msg "Cleanup..."
+# rm -rf /root/docker/portainer-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
 

@@ -31,11 +31,9 @@ function msg() {
 clear
 
 ## Begin Docker Installation
-msg "Install Docker..."
 curl -fsSL get.docker.com | sh
+msg "Docker Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/install/docker-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
-
-msg "Docker Installation Complete..."
