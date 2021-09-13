@@ -10,6 +10,9 @@ function msg() {
   echo -e "$TEXT"
 }
 
+# Install Main Setup first
+/root/main.sh
+
 # Install Docker
 /root/install/docker-install.sh
 
@@ -50,7 +53,6 @@ fi
 # Install Fail2Ban
 /root/install/fail2ban-install.sh
 
-/root/main.sh
 
 # Cleanup container
 msg "Cleanup..."

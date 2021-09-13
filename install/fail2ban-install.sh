@@ -28,8 +28,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
-
 apt-get install -y fail2ban &>/dev/null
 
 systemctl start fail2ban
@@ -39,4 +37,4 @@ msg "Fail2Ban Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/install/fail2ban-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/install/fail2ban-install.sh

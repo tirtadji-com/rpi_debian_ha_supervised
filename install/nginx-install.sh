@@ -28,8 +28,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
-
 apt install -y nginx &>/dev/null
 
 cp -r ~/nginx-files/custom-snippets /etc/nginx/
@@ -43,4 +41,4 @@ msg "NGINX Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/install/certbot-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/install/certbot-install.sh
