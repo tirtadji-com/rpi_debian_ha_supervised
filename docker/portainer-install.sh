@@ -28,7 +28,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
 # Making Directory for docker container 
 mkdir /usr/share/hassio/docker
 mkdir /usr/share/hassio/docker/portainer
@@ -40,4 +39,4 @@ msg "Installation Portainer - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/docker/portainer-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/docker/portainer-install.sh

@@ -30,8 +30,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
-
 while [[ $PASS = "" ]]; do
   read -p "Your Samba Password: " -s PASS
 done
@@ -59,4 +57,4 @@ msg "Samba Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/hass/samba-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/hass/samba-install.sh

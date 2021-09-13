@@ -28,7 +28,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
 # Install pre-required OSAgent for HA Supervised
 apt-get install -y udisks2 libglib2.0-bin &>/dev/null
 msg "Installed prerequisite Apps - \e[32m[DONE]\033[0m"
@@ -40,4 +39,4 @@ msg "Installed OS Agent - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/hass/osagent-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/hass/osagent-install.sh

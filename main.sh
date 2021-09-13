@@ -32,8 +32,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
-
 while [[ $TZONE = "" ]]; do
   read -p "Write your timezone eg, Asia/Jakarta: " TZONE
 done
@@ -156,4 +154,4 @@ msg "Main Setup - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/main.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/main.sh

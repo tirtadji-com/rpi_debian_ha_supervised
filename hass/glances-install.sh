@@ -28,7 +28,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
 # Install pre-required applications for Debian 11
 apt install -y python3 python3-pip &>/dev/null
 pip3 install glances[all] &>/dev/null
@@ -60,4 +59,4 @@ msg "Glances Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/hass/glances-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/hass/glances-install.sh

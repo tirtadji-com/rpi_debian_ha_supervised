@@ -28,7 +28,6 @@ function msg() {
   echo -e "$TEXT"
 }
 
-clear
 # Prerequisite Apps for HA
 apt-get install -y software-properties-common apparmor-utils dbus jq network-manager &>/dev/null
 msg "Install HA Supervised Prerequisite Apps - \e[32m[DONE]\033[0m"
@@ -53,4 +52,4 @@ msg "HA Superviser Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/docker/hass-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/docker/hass-install.sh

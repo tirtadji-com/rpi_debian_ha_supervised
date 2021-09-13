@@ -73,7 +73,7 @@ rm /root/main.zip
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/motd /root/install.sh /var/{cache,log}/* /var/lib/apt/lists/*
+rm -rf /root/motd /root/install.sh
 
 # Reboot Now
 msg "The System will REBOOT..."
