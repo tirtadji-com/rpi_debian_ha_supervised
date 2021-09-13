@@ -19,7 +19,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -28,6 +28,7 @@ function msg() {
   echo -e "$TEXT"
 }
 
+msg "Installing HA Supervised..."
 # Prerequisite Apps for HA
 apt-get install -y software-properties-common apparmor-utils dbus jq network-manager &>/dev/null
 msg "Install HA Supervised Prerequisite Apps - \e[32m[DONE]\033[0m"
@@ -48,8 +49,9 @@ service docker restart
 # Install HA Supervised
 curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh &>/dev/null
 bash installer.sh --machine raspberrypi4-64
-msg "HA Superviser Installed - \e[32m[DONE]\033[0m"
+
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/docker/hass-install.sh
+msg "HA Superviser Installed - \e[32m[DONE]\033[0m"

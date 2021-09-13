@@ -19,7 +19,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -28,15 +28,15 @@ function msg() {
   echo -e "$TEXT"
 }
 
+msg "Installing Portainer..."
 # Making Directory for docker container 
 mkdir /usr/share/hassio/docker
 mkdir /usr/share/hassio/docker/portainer
-msg "Prepare directory for portainer - \e[32m[DONE]\033[0m"
 
 # Installation portainer and watchtower
 docker run --name="portainer" -d --restart=always -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/share/hassio/docker/portainer:/data portainer/portainer-ce
-msg "Installation Portainer - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/docker/portainer-install.sh
+msg "Portainer Installed - \e[32m[DONE]\033[0m"

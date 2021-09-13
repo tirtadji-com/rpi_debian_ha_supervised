@@ -5,11 +5,6 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
-function msg() {
-  local TEXT="$1"
-  echo -e "$TEXT"
-}
-
 # Install Main Setup first
 /root/main.sh
 
@@ -53,7 +48,5 @@ fi
 # Install Fail2Ban
 /root/install/fail2ban-install.sh
 
-
 # Cleanup container
-msg "Cleanup..."
 rm -rf /root/install/home-assistant.sh

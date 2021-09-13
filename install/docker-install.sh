@@ -19,7 +19,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -28,10 +28,11 @@ function msg() {
   echo -e "$TEXT"
 }
 
+msg "Installing Docker..."
 ## Begin Docker Installation
 curl -fsSL get.docker.com | sh
-msg "Docker Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/install/docker-install.sh
+msg "Docker Installed - \e[32m[DONE]\033[0m"

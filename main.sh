@@ -23,7 +23,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -31,6 +31,8 @@ function msg() {
   local TEXT="$1"
   echo -e "$TEXT"
 }
+
+msg "Main Setup Begin..."
 
 while [[ $TZONE = "" ]]; do
   read -p "Write your timezone eg, Asia/Jakarta: " TZONE
@@ -43,8 +45,8 @@ done
 apt-get install -y sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils &>/dev/null
 
 # setup locales choose en-US.UTF-8
-locale-gen "en_US.UTF-8" >/dev/null
-dpkg-reconfigure locales >/dev/null
+locale-gen "en_US.UTF-8"
+dpkg-reconfigure locales
 msg "Locale Set - \e[32m[DONE]\033[0m"
 
 # Setup time for my timezone
@@ -150,8 +152,7 @@ systemctl disable rpi-set-sysconf
 
 rm -r $MOTD_ROOT
 
-msg "Main Setup - \e[32m[DONE]\033[0m"
-
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/main.sh
+msg "Main Setup - \e[32m[DONE]\033[0m"

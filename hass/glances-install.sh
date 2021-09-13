@@ -19,7 +19,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -28,6 +28,7 @@ function msg() {
   echo -e "$TEXT"
 }
 
+msg "Installing Glances..."
 # Install pre-required applications for Debian 11
 apt install -y python3 python3-pip &>/dev/null
 pip3 install glances[all] &>/dev/null
@@ -55,8 +56,8 @@ systemctl enable glances
 
 ## Start Services
 service glances start
-msg "Glances Installed - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/hass/glances-install.sh
+msg "Glances Installed - \e[32m[DONE]\033[0m"

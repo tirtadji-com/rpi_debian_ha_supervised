@@ -19,7 +19,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -28,6 +28,7 @@ function msg() {
   echo -e "$TEXT"
 }
 
+msg "Installing OSAgent..."
 # Install pre-required OSAgent for HA Supervised
 apt-get install -y udisks2 libglib2.0-bin &>/dev/null
 msg "Installed prerequisite Apps - \e[32m[DONE]\033[0m"
@@ -35,8 +36,8 @@ msg "Installed prerequisite Apps - \e[32m[DONE]\033[0m"
 # Install OSAgent
 wget https://github.com/home-assistant/os-agent/releases/download/1.1.1/os-agent_1.1.1_linux_aarch64.deb &>/dev/null
 dpkg -i os-agent_1.1.1_linux_aarch64.deb &>/dev/null
-msg "Installed OS Agent - \e[32m[DONE]\033[0m"
 
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/hass/osagent-install.sh
+msg "Installed OS Agent - \e[32m[DONE]\033[0m"

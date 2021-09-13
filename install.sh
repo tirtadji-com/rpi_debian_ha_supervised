@@ -19,7 +19,7 @@ function error_exit() {
   trap - ERR
   local DEFAULT='Unknown failure occured.'
   local REASON="\e[97m${1:-$DEFAULT}\e[39m"
-  local FLAG="\e[91m[ERROR:LXC] \e[93m$EXIT@$LINE"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
   msg "$FLAG $REASON"
   exit $EXIT
 }
@@ -55,7 +55,7 @@ if [[ $CODE_NAME -ne bullseye ]]; then
 	exit 1
 fi
 
-apt-get -y install sudo unzip lsb-release git &>/dev/null
+apt-get -y install sudo unzip curl lsb-release git &>/dev/null
 cd ~
 msg "Installing and Checking Prerequisite application - \e[32m[DONE]\033[0m"
 

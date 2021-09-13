@@ -1,13 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ###############################################################
 #	Created by Richard Tirtadji
-# Auto installer for Raspberry on Debian 11 + HA Supervised  
-# NGINX Configurations for HA
+#   Auto installer for Raspberry on Debian 11 + HA Supervised  
+# 	Installer scripts
+# 	Additional script made by tteck
 ###############################################################
 HOST=$1
 DOMAIN=$2
 IP=$3
 EMAIL=$4
+
+function msg() {
+  local TEXT="$1"
+  echo -e "$TEXT"
+}
+
+msg "NGINX Config Setup..."
 
 read -p "Is this your main domain e.g. www (y/n): " MAIN
 
@@ -85,7 +93,7 @@ server {
 }
 EOF
 
-certbot certonly --no-eff-email -m rtirtadji@gmail.com --agree-tos --no-redirect --nginx -d $DOMAIN -d $HOST.$DOMAIN
+certbot certonly --no-eff-email -m $EMAIL --agree-tos --no-redirect --nginx -d $DOMAIN -d $HOST.$DOMAIN
 
 # create link for nginx
 ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
@@ -153,7 +161,7 @@ server {
 }
 EOF
 
-certbot certonly --no-eff-email -m rtirtadji@gmail.com --agree-tos --no-redirect --nginx -d $HOST.$DOMAIN
+certbot certonly --no-eff-email -m $EMAIL --agree-tos --no-redirect --nginx -d $HOST.$DOMAIN
 
 # create link for nginx
 ln -s /etc/nginx/sites-available/$HOST.$DOMAIN /etc/nginx/sites-enabled/$HOST.$DOMAIN
@@ -164,6 +172,6 @@ fi
 service nginx restart
 
 # Cleanup container
-# msg "Cleanup..."
-# rm -rf /root/docker/portainer-install.sh /var/{cache,log}/* /var/lib/apt/lists/*
-
+msg "Cleanup..."
+rm -rf /root/hass/nginx-hass-conf.sh
+msg "NGINX Config Setup - \e[32m[DONE]\033[0m"
