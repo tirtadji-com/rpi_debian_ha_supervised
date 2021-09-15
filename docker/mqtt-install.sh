@@ -4,11 +4,6 @@
 #   Auto installer for Raspberry on Debian 11 + HA Supervised  
 #  Install Docker MQTT
 ###############################################################
-# open port 9001 for HA
-#ufw allow 1883
-#ufw allow 9001
-#service ufw restart
-
 # Making Directory for docker container 
 mkdir /usr/share/hassio/docker/mqtt
 mkdir /usr/share/hassio/docker/mqtt/config
