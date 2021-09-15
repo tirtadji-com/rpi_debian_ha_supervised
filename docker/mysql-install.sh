@@ -28,14 +28,18 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing Certbot..."
-# Install CertBot
-apt-get install -y certbot python-certbot-nginx &>/dev/null
+while [[ $PASS = "" ]]; do
+  read -p "Your mySQL Root Password: " PASS
+done
 
-# support cloudflare plugins for star.dns
-apt-get install -y python3-certbot-dns-cloudflare &>/dev/null 
+msg "Installing mySQL..."
+# Making Directory for docker container 
+mkdir /usr/share/hassio/docker
+mkdir /usr/share/hassio/docker/mysql
+
+docker run -d -p 3306:3306 --restart=always --net=host --name "mysql" -v /usr/share/hassio/docker/mysql/conf.d:/etc/mysql/conf.d -v /usr/share/hassio/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=$PASS mysql:8.0.26 --default-authentication-plugin=mysql_native_password
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/install/certbot-install.sh
-msg "Certbot Installed - \e[32m[DONE]\033[0m"
+rm -rf /root/docker/mysql-install.sh
+msg "mySQL Installed - \e[32m[DONE]\033[0m"

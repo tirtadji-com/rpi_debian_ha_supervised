@@ -35,7 +35,7 @@ msg "Installing TasmoAdmin..."
 mkdir /usr/share/hassio/docker/tasmoadmin
 
 # Install TasmoAdmin
-docker run -d --restart=always --name=tasmoadmin -v /usr/share/hassio/docker/tasmoadmin/data:/data -p 9003:80 raymondmm/tasmoadmin
+docker run -d --restart=always --name=tasmoadmin -v /usr/share/hassio/docker/tasmoadmin/data:/data -p 9003:80 raymondmm/tasmoadmin:v1.7.0
 
 # Cleanup container
 msg "Cleanup..."

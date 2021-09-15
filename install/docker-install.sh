@@ -32,6 +32,11 @@ msg "Installing Docker..."
 ## Begin Docker Installation
 curl -fsSL get.docker.com | sh
 
+apt-get install -y libffi-dev libssl-dev python3-dev python3 python3-pip &>/dev/null
+pip3 -v install docker-compose &>/dev/null
+
+msg "Install Docker Compose Prerequisite Apps - \e[32m[DONE]\033[0m"
+
 # Cleanup container
 msg "Cleanup..."
 rm -rf /root/install/docker-install.sh

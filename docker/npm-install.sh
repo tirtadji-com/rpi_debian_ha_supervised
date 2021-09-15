@@ -28,18 +28,16 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing NGINX..."
-apt install -y nginx &>/dev/null
+msg "Installing NGINX Proxy Manager..."
+# Making Directory for docker container 
+mkdir /usr/share/hassio/docker
+mkdir /usr/share/hassio/docker/npm
 
-cp -r ~/nginx-files/custom-snippets /etc/nginx/
-cp ~/nginx-files/dhparam4096.pem /etc/ssl/certs/
-cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
-cp ~/nginx-files/nginx.conf /etc/nginx/
-msg "Add files and backup for NGINX - \e[32m[DONE]\033[0m"
-
-service nginx restart
+# Installation portainer and watchtower
+docker-compose /root/npm/docker-compose.yml up -d
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/install/certbot-install.sh
-msg "NGINX Installed - \e[32m[DONE]\033[0m"
+rm -rf /root/docker/npm-install.sh
+msg " NGINX Proxy Manager Installed - \e[32m[DONE]\033[0m"
+msg "First Login - email: admin@example.com and password: changeme"

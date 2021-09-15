@@ -1,6 +1,11 @@
 # This installation will help you install HA Superviser on Debian 11
 Home-Assistant Supervisor on Raspberry Pi 4 running Debian 11 complies with ADR-0014. Additional uncomplies are NGINX, Certbot, Glance, Portainer and other docker container should you install it. I just dont like to run my docker under supervisor account.
 
+# Changes
+I'm removing NGINX Installer and replacing it with NGINX Proxy Manager which I think will make your live easier rather then have to setup NGINX config manually. To login to NGINX Proxy Manager simple go to IP:81 and for the first time you will need to login as admin@example.com with password: changeme.
+
+Portainer is now part of the installation, so you can easily check if there are problem with HA + Supervised Installation. To access portainer simply go to http://IP:9000
+
 # Old Youtube Video to help you
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/yMEryGN_2MY/0.jpg)](https://www.youtube.com/watch?v=yMEryGN_2MY/0)
 
@@ -52,27 +57,22 @@ step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH pass
 You can access **portainer** by running it on your browser at `http://<YOUR-IP>:9000`
 
 # Install Additional Docker Apps
-If you want to install more docker application for your Home-Assistant then you will have to run each individual script inside docker directory accept for hass-install.sh (remember this installation will not complies with ADR-0014)
+If you want to install more docker application for your Home-Assistant then you will have to run each individual script inside the docker directory.
 
 To install simply by `cd /root/docker` and type `./[docker-apps]-install.sh`
-**Docker-Apps:**
 
+**Docker-Apps:**
+- NGINX Proxy Manager on port 81
+- Portainer on port 9000
 - Grafana running on port 3000
 - ESP Home running on port 6052
 - InfluxDB running on port 8086
 - MotionEye running on port 8765
 - MQTT running on port 1883
+- mySQL running on port 3306 <- no web interfaces
 - TasmoAdmin running on port 9003
 
 **Non Docker-Apps:**
-
+- Samba as default will be installed
 - Glaces running on port 61208
 - Home-Assistant on port 8123
-
-# Portainer
-
-For those who never used Portainer please run this apps first, this will allow you to see your docker dashboard and allowing you to control your docker apps installed on your RPI. More information regarding portainer can be read at portainer.io
-
-# NGINX Installation
-
-IF you did not setup NGINX on your first installation and would like to add it up you can run `./nginx.sh` from your root directory.

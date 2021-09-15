@@ -34,7 +34,7 @@ mkdir /usr/share/hassio/docker
 mkdir /usr/share/hassio/docker/portainer
 
 # Installation portainer and watchtower
-docker run --name="portainer" -d --restart=always -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/share/hassio/docker/portainer:/data portainer/portainer-ce
+docker run --name="portainer" -d --restart=always -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v /usr/share/hassio/docker/portainer:/data portainer/portainer-ce:2.6.3-alpine
 
 # Cleanup container
 msg "Cleanup..."

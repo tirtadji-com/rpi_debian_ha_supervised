@@ -5,8 +5,6 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
-TZONE=$1
-
 # Setup script environment
 set -o errexit  #Exit immediately if a pipeline returns a non-zero status
 set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
@@ -35,7 +33,7 @@ msg "Installing Grafana..."
 mkdir  /usr/share/hassio/docker/grafana
 
 # Install grafana
-docker run -d --user root --restart=always -p 3000:3000 --name="grafana" --net=host -v /usr/share/hassio/docker/grafana:/var/lib/grafana grafana/grafana-arm64v8-linux
+docker run -d --user root --restart=always -p 3000:3000 --name="grafana" --net=host -v /usr/share/hassio/docker/grafana:/var/lib/grafana grafana/grafana:8.1.3
 
 # Cleanup container
 msg "Cleanup..."

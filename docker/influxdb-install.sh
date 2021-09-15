@@ -30,14 +30,25 @@ function msg() {
   echo -e "$TEXT"
 }
 
+while [[ $USER = "" ]]; do
+  read -p "Please input your username for influxDB: " USER
+done
+
+while [[ $PASS = "" ]]; do
+  read -p "Your influxdb Password: " PASS
+done
+
+while [[ $ORG = "" ]]; do
+  read -p "Please input your organizations: " ORG
+done
+
 msg "Installing InfluxDB..."
+
 # Making Directory for docker container
-mkdir /etc/influxdb 
 mkdir /usr/share/hassio/docker/influxdb
 
 # Install influxdb
-docker run --rm influxdb influxd config | tee /etc/influxdb/influxdb.conf > /dev/null
-docker run -d -p 8086:8086 --restart=always --net=host --name="influxdb" -v /etc/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf -v /usr/share/hassio/docker/influxdb:/var/lib/influxdb influxdb -config /etc/influxdb/influxdb.conf
+docker run -d -p 8086:8086 --name=influxdb --restart=always -v /usr/share/hassio/docker/influxdb/data:/var/lib/influxdb2 -v /usr/share/hassio/docker/influxdb/config:/etc/influxdb2 -e DOCKER_INFLUXDB_INIT_MODE=setup -e DOCKER_INFLUXDB_INIT_USERNAME=$USER -e DOCKER_INFLUXDB_INIT_PASSWORD=$PASS -e DOCKER_INFLUXDB_INIT_ORG=$ORG -e DOCKER_INFLUXDB_INIT_BUCKET=homeassistant influxdb:2.0.7
 
 # Cleanup container
 msg "Cleanup..."

@@ -30,20 +30,15 @@
 /root/hass/samba-install.sh
 
 # Begin Installation NGINX
-read -p "Do you want to install NGINX (y/n): " NGX
-
-if [ "$NGX" != "${NGX#[Yy]}" ]; then
-
-# Install NGINX
-/root/install/nginx-install.sh
-
-# Install Letsencrypt
-/root/install/certbot-install.sh
-
-# Prepare NGINX Config for HASS
-/root/hass/nginx-hass-conf.sh
-
-fi
+read -p "Do you want to install NGINX Proxy Manager (y/n): " NGX
+case "$NGX" in 
+  [yY] | [yY][eE][sS])
+    /root/docker/npm-install.sh
+    ;;
+  *)
+    echo "Please enter y/yes or n/no"
+    ;;
+esac
 
 # Install Fail2Ban
 /root/install/fail2ban-install.sh
