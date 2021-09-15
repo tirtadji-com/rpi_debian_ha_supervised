@@ -85,7 +85,7 @@ server {
 }
 EOF
 
-certbot certonly --no-eff-email -m rtirtadji@gmail.com --agree-tos --no-redirect --nginx -d $DOMAIN -d $HOST.$DOMAIN
+certbot certonly --no-eff-email -m $EMAIL --agree-tos --no-redirect --nginx -d $DOMAIN -d $HOST.$DOMAIN
 
 # create link for nginx
 ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/$DOMAIN
@@ -153,7 +153,7 @@ server {
 }
 EOF
 
-certbot certonly --no-eff-email -m rtirtadji@gmail.com --agree-tos --no-redirect --nginx -d $HOST.$DOMAIN
+certbot certonly --no-eff-email -m $EMAIL --agree-tos --no-redirect --nginx -d $HOST.$DOMAIN
 
 # create link for nginx
 ln -s /etc/nginx/sites-available/$HOST.$DOMAIN /etc/nginx/sites-enabled/$HOST.$DOMAIN
