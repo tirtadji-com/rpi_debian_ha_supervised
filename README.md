@@ -80,4 +80,5 @@ To install simply by `cd /root/docker` and type `./[docker-apps]-install.sh`
 ## Thank you and  Cheers
 
 If you like the scripts you can always
+
 <a href="https://www.buymeacoffee.com/rltirtadji"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=rltirtadji&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
