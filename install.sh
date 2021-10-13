@@ -1,28 +1,66 @@
-#!/bin/bash
+#!/usr/bin/env bash
 ###############################################################
 #	Created by Richard Tirtadji
 #   Auto installer for Raspberry on Debian 11 + HA Supervised  
 # 	Installer scripts
+# 	Additional script made by tteck
 ###############################################################
-apt-get update && apt-get upgrade -y && apt autoremove -y
-apt-get -y install sudo curl unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils
+# Setup script environment
+set -o errexit  #Exit immediately if a pipeline returns a non-zero status
+set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
+set -o nounset  #Treat unset variables as an error
+set -o pipefail #Pipe will exit with last non-zero status if applicable
+shopt -s expand_aliases
+alias die='EXIT=$? LINE=$LINENO error_exit'
+trap die ERR
+trap 'die "Script interrupted."' INT
 
-Check Procedure
-LINUX='lsb_release -is'
+function error_exit() {
+  trap - ERR
+  local DEFAULT='Unknown failure occured.'
+  local REASON="\e[97m${1:-$DEFAULT}\e[39m"
+  local FLAG="\e[91m[ERROR:HAInstall] \e[93m$EXIT@$LINE"
+  msg "$FLAG $REASON"
+  exit $EXIT
+}
+function msg() {
+  local TEXT="$1"
+  echo -e "$TEXT"
+}
+
+# Update Debian 11
+msg "Installation begin and it will take a several minute to complete"
+apt-get update >/dev/null
+apt-get dist-upgrade -y &>/dev/null
+apt autoremove -y &>/dev/null
+msg "Updating your Debian 11 - \e[32m[DONE]\033[0m"
+
+# Check Procedure
+set +u
+OS_NAME='lsb_release -is'
+CODE_NAME='lsb_release -cs'
 
 if [ $(id -u) -ne 0 ]; then
-	echo "Run this script as a Root user only" >&2
+  msg "You must run this script as a ROOT"
 	exit 1
 fi
 
-if [[ $LINUX -ne Debian ]]; then
-	echo "This script usage only for Debian" >&2
+if [[ $OS_NAME -ne Debian ]]; then
+  msg "You must run this script on Debian Machine"
 	exit 1
 fi
+
+if [[ $CODE_NAME -ne bullseye ]]; then
+  msg "The script support Debian 11 aka bullseye only"
+	exit 1
+fi
+
+apt-get -y install sudo unzip curl lsb-release git &>/dev/null
 cd ~
+msg "Installing and Checking Prerequisite application - \e[32m[DONE]\033[0m"
 
-wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip
-unzip /root/main.zip -d /root/
+wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip &>/dev/null
+unzip /root/main.zip -d /root/ &>/dev/null
 result=`ls -F /root/ | grep /`
 mv /root/$result/* /root/
 rm -r /root/$result
@@ -32,20 +70,11 @@ chmod +x /root/hass/*.sh
 chmod +x /root/docker/*.sh
 rm /root/main.zip
 /root/home-assistant.sh
-rm /root/main.sh
-rm -rf /root/motd
-rm /root/home-assistant.sh
-rm /root/install/docker-install.sh
-rm /root/install/fail2ban-install.sh
-rm /root/hass/glances-install.sh
-rm /root/hass/samba-install.sh
-rm /root/hass/osagent-install.sh
-rm /root/docker/hass-install.sh
-rm /root/docker/portainer-install.sh
-rm /root/fixed.sh
-rm /root/installer.sh
-rm /root/os-agent_1.1.1_linux_aarch64.deb
 
-echo -e "HA installation complete"
+# Cleanup container
+msg "Cleanup..."
+rm -rf /root/motd /root/install.sh
 
+# Reboot Now
+msg "The System will REBOOT..."
 reboot now

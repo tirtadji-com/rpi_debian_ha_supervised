@@ -5,8 +5,6 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
-PASS=$1
-
 # Setup script environment
 set -o errexit  #Exit immediately if a pipeline returns a non-zero status
 set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
@@ -30,32 +28,16 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing Samba..."
-while [[ $PASS = "" ]]; do
-  read -p "Your Samba Password: " -s PASS
-done
+msg "Installing NGINX Proxy Manager..."
+# Making Directory for docker container 
+mkdir /usr/share/hassio/docker
+mkdir /usr/share/hassio/docker/npm
 
-apt install samba -y &>/dev/null
-
-cat <<EOF >>/etc/samba/smb.conf
-[home-assistant]
-  comment = Samba for home-assistant
-  path = /usr/share/hassio
-  read only = no
-  browsable = yes
-  writeable = yes
-  guest ok = no
-  create mask = 0644
-  directory mask = 0755
-  force user = root  
-  force group = root  
-EOF
-
-echo -e "$PASS\n$PASS" | smbpasswd -s -a root
-
-service smbd restart
+# Installation portainer and watchtower
+docker-compose /root/npm/docker-compose.yml up -d
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/hass/samba-install.sh
-msg "Samba Installed - \e[32m[DONE]\033[0m"
+rm -rf /root/docker/npm-install.sh
+msg " NGINX Proxy Manager Installed - \e[32m[DONE]\033[0m"
+msg "First Login - email: admin@example.com and password: changeme"

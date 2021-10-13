@@ -5,8 +5,6 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
-PASS=$1
-
 # Setup script environment
 set -o errexit  #Exit immediately if a pipeline returns a non-zero status
 set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
@@ -30,32 +28,18 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing Samba..."
 while [[ $PASS = "" ]]; do
-  read -p "Your Samba Password: " -s PASS
+  read -p "Your mySQL Root Password: " PASS
 done
 
-apt install samba -y &>/dev/null
+msg "Installing mySQL..."
+# Making Directory for docker container 
+mkdir /usr/share/hassio/docker
+mkdir /usr/share/hassio/docker/mysql
 
-cat <<EOF >>/etc/samba/smb.conf
-[home-assistant]
-  comment = Samba for home-assistant
-  path = /usr/share/hassio
-  read only = no
-  browsable = yes
-  writeable = yes
-  guest ok = no
-  create mask = 0644
-  directory mask = 0755
-  force user = root  
-  force group = root  
-EOF
-
-echo -e "$PASS\n$PASS" | smbpasswd -s -a root
-
-service smbd restart
+docker run -d -p 3306:3306 --restart=always --net=host --name "mysql" -v /usr/share/hassio/docker/mysql/conf.d:/etc/mysql/conf.d -v /usr/share/hassio/docker/mysql/datadir:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=$PASS mysql:8.0.26 --default-authentication-plugin=mysql_native_password
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/hass/samba-install.sh
-msg "Samba Installed - \e[32m[DONE]\033[0m"
+rm -rf /root/docker/mysql-install.sh
+msg "mySQL Installed - \e[32m[DONE]\033[0m"
