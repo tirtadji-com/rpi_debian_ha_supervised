@@ -30,12 +30,12 @@ function msg() {
 
 msg "Installing OSAgent..."
 # Install pre-required OSAgent for HA Supervised
-apt-get install -y udisks2 libglib2.0-bin &>/dev/null
+apt-get install -y udisks2 libglib2.0-bin 
 msg "Installed prerequisite Apps - \e[32m[DONE]\033[0m"
 
 # Install OSAgent
-wget https://github.com/home-assistant/os-agent/releases/download/1.1.1/os-agent_1.1.1_linux_aarch64.deb &>/dev/null
-dpkg -i os-agent_1.1.1_linux_aarch64.deb &>/dev/null
+wget https://github.com/home-assistant/os-agent/releases/download/1.1.1/os-agent_1.1.1_linux_aarch64.deb 
+dpkg -i os-agent_1.1.1_linux_aarch64.deb 
 
 # Cleanup container
 msg "Cleanup..."

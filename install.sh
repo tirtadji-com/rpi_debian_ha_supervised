@@ -30,9 +30,9 @@ function msg() {
 
 # Update Debian 11
 msg "Installation begin and it will take a several minute to complete"
-apt-get update >/dev/null
-apt-get dist-upgrade -y &>/dev/null
-apt autoremove -y &>/dev/null
+apt-get update
+apt-get dist-upgrade -y 
+apt autoremove -y 
 msg "Updating your Debian 11 - \e[32m[DONE]\033[0m"
 
 # Check Procedure
@@ -55,12 +55,12 @@ if [[ $CODE_NAME -ne bullseye ]]; then
 	exit 1
 fi
 
-apt-get -y install sudo unzip curl lsb-release git &>/dev/null
+apt-get -y install sudo unzip curl lsb-release git 
 cd ~
 msg "Installing and Checking Prerequisite application - \e[32m[DONE]\033[0m"
 
-wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip &>/dev/null
-unzip /root/main.zip -d /root/ &>/dev/null
+wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip 
+unzip /root/main.zip -d /root/ 
 result=`ls -F /root/ | grep /`
 mv /root/$result/* /root/
 rm -r /root/$result

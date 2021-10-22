@@ -35,7 +35,7 @@ while [[ $PASS = "" ]]; do
   read -p "Your Samba Password: " -s PASS
 done
 
-apt install samba -y &>/dev/null
+apt install samba -y 
 
 cat <<EOF >>/etc/samba/smb.conf
 [home-assistant]

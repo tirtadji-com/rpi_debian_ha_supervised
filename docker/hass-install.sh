@@ -30,11 +30,11 @@ function msg() {
 
 msg "Installing HA Supervised..."
 # Prerequisite Apps for HA
-apt-get install -y software-properties-common apparmor-utils dbus jq network-manager &>/dev/null
+apt-get install -y software-properties-common apparmor-utils dbus jq network-manager 
 msg "Install HA Supervised Prerequisite Apps - \e[32m[DONE]\033[0m"
 
-systemctl disable ModemManager >/dev/null
-systemctl stop ModemManager >/dev/null
+systemctl disable ModemManager
+systemctl stop ModemManager
 msg "Disable and stop ModemManager - \e[32m[DONE]\033[0m"
 
 rm -rf /etc/machine-id
@@ -47,7 +47,7 @@ msg "Fixed machine-id and restart docker - \e[32m[DONE]\033[0m"
 service docker restart
 
 # Install HA Supervised
-curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh &>/dev/null
+curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh 
 bash installer.sh --machine raspberrypi4-64
 
 

@@ -29,7 +29,7 @@ function msg() {
 }
 
 msg "Installing Fail2Ban..."
-apt-get install -y fail2ban &>/dev/null
+apt-get install -y fail2ban 
 
 systemctl start fail2ban
 systemctl enable fail2ban

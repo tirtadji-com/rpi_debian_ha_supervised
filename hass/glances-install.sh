@@ -30,8 +30,8 @@ function msg() {
 
 msg "Installing Glances..."
 # Install pre-required applications for Debian 11
-apt install -y python3 python3-pip &>/dev/null
-pip3 install glances[all] &>/dev/null
+apt install -y python3 python3-pip 
+pip3 install glances[all]
 msg "Installed Prerequisite for Glances - \e[32m[DONE]\033[0m"
 
 # Prepare Glances as services
