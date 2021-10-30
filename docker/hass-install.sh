@@ -47,9 +47,8 @@ msg "Fixed machine-id and restart docker - \e[32m[DONE]\033[0m"
 service docker restart
 
 # Install HA Supervised
-curl -Lo installer.sh https://raw.githubusercontent.com/home-assistant/supervised-installer/master/installer.sh 
-bash installer.sh --machine raspberrypi4-64
-
+wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
+dpkg -i homeassistant-supervised.deb
 
 # Cleanup container
 msg "Cleanup..."

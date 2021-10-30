@@ -17,12 +17,6 @@
 # Install AgentOS
 /root/hass/osagent-install.sh
 
-# Temp Fixed
-#/root/fixed.sh
-
-# Install Portainer
-/root/docker/portainer-install.sh
-
 # Install Glances
 /root/hass/glances-install.sh
 
@@ -44,4 +38,4 @@ esac
 /root/install/fail2ban-install.sh
 
 # Cleanup container
-rm -rf /root/install/home-assistant.sh
+rm -rf /root/install/home-assistant.sh /root/homeassistant-supervised.deb

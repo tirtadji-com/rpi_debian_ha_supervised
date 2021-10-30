@@ -57,20 +57,8 @@ step 6: Now SSH to your RPI by using `ssh root@local-ip` and enter your SSH pass
 You can access **portainer** by running it on your browser at `http://<YOUR-IP>:9000`
 
 # Install Additional Docker Apps
-If you want to install more docker application for your Home-Assistant then you will have to run each individual script inside the docker directory.
-
-To install simply by `cd /root/docker` and type `./[docker-apps]-install.sh`
-
-**Docker-Apps:**
-- NGINX Proxy Manager on port 81
-- Portainer on port 9000
-- Grafana running on port 3000
-- ESP Home running on port 6052
-- InfluxDB running on port 8086
-- MotionEye running on port 8765
-- MQTT running on port 1883
-- mySQL running on port 3306 <- no web interfaces
-- TasmoAdmin running on port 9003
+**UPDATE**
+Supervised is now exclusive for HA only, so additional docker on the same machine will have to run from HA. Due to this issue I will remove all other docker installation accept for NGINX Proxy Manager which I think will causing HA Supervised will become an unsupported OS. Have to see how can I fixed this.
 
 **Non Docker-Apps:**
 - Samba as default will be installed
