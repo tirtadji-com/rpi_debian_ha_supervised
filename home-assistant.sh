@@ -5,37 +5,35 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
+$PWD/main.sh
+
 # Install Main Setup first
-/root/main.sh
+read -p "Do you want to install NGINX (y/n): " NGX
+if [ "$NGX" != "${NGX#[Yy]}" ]; then
+  # Install NGINX
+  $PWD/install/nginx-install.sh
+  # Install Letsencrypt
+  $PWD/install/certbot-install.sh
+  # Prepare NGINX Config for HASS
+  $PWD/hass/nginx-hass-conf.sh
+fi
 
 # Install Docker
-/root/install/docker-install.sh
-
-# Install HASS
-/root/docker/hass-install.sh
-
-# Install AgentOS
-/root/hass/osagent-install.sh
-
+$PWD/install/docker-install.sh
 # Install Glances
-/root/hass/glances-install.sh
-
+$PWD/hass/glances-install.sh
 # Install Samba
-/root/hass/samba-install.sh
+$PWD/hass/samba-install.sh
+# Install Crowdsec
+$PWD/install/crowdsec-install.sh
 
-# Begin Installation NGINX
-read -p "Do you want to install NGINX Proxy Manager (y/n): " NGX
-case "$NGX" in 
-  [yY] | [yY][eE][sS])
-    /root/docker/npm-install.sh
-    ;;
-  *)
-    echo "Please enter y/yes or n/no"
-    ;;
-esac
+# Begin the main installation
+# Install AgentOS
+$PWD/hass/osagent-install.sh
+# Install HASS
+$PWD/docker/hass-install.sh
+# Install Glances
 
-# Install Fail2Ban
-/root/install/fail2ban-install.sh
 
 # Cleanup container
-rm -rf /root/install/home-assistant.sh /root/homeassistant-supervised.deb
+rm -rf $PWD/install/home-assistant.sh $PWD/homeassistant-supervised.deb

@@ -5,6 +5,8 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
+PASS=$1
+
 # Setup script environment
 set -o errexit  #Exit immediately if a pipeline returns a non-zero status
 set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
@@ -28,19 +30,32 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing Docker..."
-## Begin Docker Installation
-curl -fsSL get.docker.com | sh
-usermod -aG docker root
-msg "Install Docker - \e[32m[DONE]\033[0m"
+msg "Installing Samba..."
+while [[ $PASS = "" ]]; do
+  read -p "Your Samba Password: " -s PASS
+done
 
-COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep -oE "v[0-9]+\.[0-9]{0,1}+\.[0-9]+$" | tail -n 1`
-VER=`uname -s`
-curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-${VER,,}-`uname -m` -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-msg "Install Docker Compose - \e[32m[DONE]\033[0m"
+apt install samba -y 
+
+cat <<EOF >>/etc/samba/smb.conf
+[home-assistant]
+  comment = Samba for home-assistant
+  path = /usr/share/hassio
+  read only = no
+  browsable = yes
+  writeable = yes
+  guest ok = no
+  create mask = 0644
+  directory mask = 0755
+  force user = root  
+  force group = root  
+EOF
+
+echo -e "$PASS\n$PASS" | smbpasswd -s -a root
+
+service smbd restart
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf $PWD/install/docker-install.sh
-msg "Docker Installed - \e[32m[DONE]\033[0m"
+rm -rf $PWD/install/samba-install.sh
+msg "Samba Installed - \e[32m[DONE]\033[0m"

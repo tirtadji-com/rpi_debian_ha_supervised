@@ -30,19 +30,15 @@ function msg() {
 
 msg "Installing HA Supervised..."
 # Prerequisite Apps for HA
-apt-get install -y software-properties-common apparmor-utils dbus jq network-manager 
+apt-get install -y apparmor jq wget curl udisks2 libglib2.0-bin network-manager dbus systemd-journal-remote
 msg "Install HA Supervised Prerequisite Apps - \e[32m[DONE]\033[0m"
 
-systemctl disable ModemManager
-systemctl stop ModemManager
-msg "Disable and stop ModemManager - \e[32m[DONE]\033[0m"
-
-rm -rf /etc/machine-id
-rm -rf /var/lib/dbus/machine-id
-dbus-uuidgen --ensure=/etc/machine-id
-dbus-uuidgen --ensure
-service docker restart
-msg "Fixed machine-id and restart docker - \e[32m[DONE]\033[0m"
+# rm -rf /etc/machine-id
+# rm -rf /var/lib/dbus/machine-id
+# dbus-uuidgen --ensure=/etc/machine-id
+# dbus-uuidgen --ensure
+# service docker restart
+# msg "Fixed machine-id and restart docker - \e[32m[DONE]\033[0m"
 
 service docker restart
 
@@ -52,5 +48,5 @@ dpkg -i homeassistant-supervised.deb
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/docker/hass-install.sh
+rm -rf $PWD/install/hass-install.sh
 msg "HA Superviser Installed - \e[32m[DONE]\033[0m"

@@ -42,12 +42,17 @@ while [[ $HOST_NAME = "" ]]; do
   read -p "The name of your server host eg. Home-Assistant: " HOST_NAME
 done
 
-apt-get install -y sudo unzip lsb-release wget locales locales-all git figlet lolcat bsdmainutils 
-
 # setup locales choose en-US.UTF-8
 locale-gen "en_US.UTF-8"
 dpkg-reconfigure locales
 msg "Locale Set - \e[32m[DONE]\033[0m"
+
+# Make Link for MOTD apps
+ln -s /usr/games/lolcat /usr/bin/lolcat
+ln -s /usr/games/fortune /usr/bin/fortune
+ln -s /usr/games/cowsay /usr/bin/cowsay
+ln -s /usr/games/cowthink /usr/bin/cowthink
+msg "Link for MOTD Set - \e[32m[DONE]\033[0m"
 
 # Setup time for my timezone
 timedatectl set-timezone $TZONE
@@ -96,36 +101,9 @@ fi
 msg "SSH Set - \e[32m[DONE]\033[0m"
 
 
-MOTD_ROOT=/root/motd
-
-# Making MOTD
-BANNER_F1=(/etc/update-motd.d/00*)
-BANNER_F2=(/etc/update-motd.d/10*)
-BANNER_F3=(/etc/update-motd.d/50*)
-BANNER_F4=(/etc/update-motd.d/80*)
-
-if [[ -f ${BANNER_F1[0]} ]]
-then
-  rm $BANNER_F1
-fi
-
-if [[ -f ${BANNER_F2[0]} ]]
-then
-  rm $BANNER_F2
-fi
-
-if [[ -f ${BANNER_F3[0]} ]]
-then
-  rm $BANNER_F3
-fi
-
-if [[ -f ${BANNER_F4[0]} ]]
-then
-  rm $BANNER_F4
-fi
-
-# Moving file MOTD
-cp $MOTD_ROOT/* /etc/update-motd.d/ 
+# Setting MOTD
+rm -rf /etc/update-motd.d/10* /etc/update-motd.d/50* /etc/update-motd.d/80* 
+cp $PWD/motd/* /etc/update-motd.d/ 
 chmod +x /etc/update-motd.d/*
 msg "MOTD Set - \e[32m[DONE]\033[0m"
 
@@ -146,13 +124,10 @@ cat <<EOF >/etc/issue.net
 EOF
 msg "SSH Banner Set - \e[32m[DONE]\033[0m"
 
-service ssh restart
-
+systemctl restart ssh
 systemctl disable rpi-set-sysconf
-
-rm -r $MOTD_ROOT
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/main.sh
+rm -rf $PWD/main.sh
 msg "Main Setup - \e[32m[DONE]\033[0m"

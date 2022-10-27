@@ -5,7 +5,7 @@
 # 	Installer scripts
 # 	Additional script made by tteck
 ###############################################################
-# Setup script environment
+
 set -o errexit  #Exit immediately if a pipeline returns a non-zero status
 set -o errtrace #Trap ERR from shell functions, command substitutions, and commands from subshell
 set -o nounset  #Treat unset variables as an error
@@ -28,36 +28,11 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing Glances..."
-# Install pre-required applications for Debian 11
-apt install -y python3 python3-pip 
-pip3 install glances[all]
-msg "Installed Prerequisite for Glances - \e[32m[DONE]\033[0m"
-
-# Prepare Glances as services
-cat <<EOF >/lib/systemd/system/glances.service
-[Unit]
-Description=Glances
-Documentation=man:glances(1)
-Documentation=https://github.com/nicolargo/glances
-After=network.target
-
-[Service]
-ExecStart=/usr/local/bin/glances --disable-plugin cloud -w
-Restart=on-abort
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-## Enable Glances
-systemctl daemon-reload
-systemctl enable glances
-
-## Start Services
-service glances start
+# Install CertBot
+apt install -y python3-acme python3-certbot python3-mock python3-openssl python3-pkg-resources python3-pyparsing python3-zope.interface
+apt install -y python3-certbot-nginx
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/hass/glances-install.sh
-msg "Glances Installed - \e[32m[DONE]\033[0m"
+rm -rf $PWD/install/certbot-install.sh
+msg "Installed Certbot - \e[32m[DONE]\033[0m"

@@ -28,19 +28,17 @@ function msg() {
   echo -e "$TEXT"
 }
 
-msg "Installing Docker..."
-## Begin Docker Installation
-curl -fsSL get.docker.com | sh
-usermod -aG docker root
-msg "Install Docker - \e[32m[DONE]\033[0m"
+apt install -y nginx
 
-COMPOSE_VERSION=`git ls-remote https://github.com/docker/compose | grep -oE "v[0-9]+\.[0-9]{0,1}+\.[0-9]+$" | tail -n 1`
-VER=`uname -s`
-curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-${VER,,}-`uname -m` -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-msg "Install Docker Compose - \e[32m[DONE]\033[0m"
+cp -r $PWD/nginx-files/custom-snippets /etc/nginx/
+cp $PWD/nginx-files/dhparam4096.pem /etc/ssl/certs/
+cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+cp $PWD/nginx-files/nginx.conf /etc/nginx/
+
+service nginx restart
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf $PWD/install/docker-install.sh
-msg "Docker Installed - \e[32m[DONE]\033[0m"
+rm -rf $PWD/install/nginx-install.sh
+rm -rf $PWD/nginx-files
+msg "Installed NGINX - \e[32m[DONE]\033[0m"

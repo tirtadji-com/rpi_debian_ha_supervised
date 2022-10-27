@@ -55,26 +55,24 @@ if [[ $CODE_NAME -ne bullseye ]]; then
 	exit 1
 fi
 
-apt-get -y install sudo unzip curl lsb-release git 
+apt-get install -y unzip lsb-release wget git figlet lolcat bsdmainutils unattended-upgrades debconf-utils curl gnupg2 ca-certificates apt-transport-https jq fortune cowsay bc locales locales-all
 cd ~
 msg "Installing and Checking Prerequisite application - \e[32m[DONE]\033[0m"
 
 wget https://github.com/tirtadji-com/rpi_debian_ha_supervised/archive/main.zip 
-unzip /root/main.zip -d /root/ 
-result=`ls -F /root/ | grep /`
-mv /root/$result/* /root/
-rm -r /root/$result
-chmod +x /root/*.sh
-chmod +x /root/install/*.sh
-chmod +x /root/hass/*.sh
-chmod +x /root/docker/*.sh
-rm /root/main.zip
-/root/home-assistant.sh
+unzip $PWD/main.zip -d $PWD/ 
+result=`ls -F $PWD/ | grep /`
+mv $PWD/$result/* $PWD/
+rm -r $PWD/$result
+chmod +x $PWD/*.sh
+chmod +x $PWD/install/*.sh
+rm $PWD/main.zip
+$PWD/home-assistant.sh
 
 # Cleanup container
 msg "Cleanup..."
-rm -rf /root/motd /root/install.sh
+rm -rf $PWD/motd $PWD/install.sh
 
 # Reboot Now
 msg "The System will REBOOT..."
-reboot now
+systemctl reboot
