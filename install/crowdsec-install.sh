@@ -36,4 +36,4 @@ apt-get install -y crowdsec-firewall-bouncer-iptables
 # Cleanup container
 msg "Cleanup..."
 rm -rf $PWD/install/crowdsec-install.sh
-msg "Fail2Ban Installed - \e[32m[DONE]\033[0m"
+msg "Crowdsec Installed - \e[32m[DONE]\033[0m"

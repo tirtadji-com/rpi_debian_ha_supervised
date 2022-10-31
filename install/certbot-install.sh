@@ -35,4 +35,4 @@ apt install -y python3-certbot-nginx
 # Cleanup container
 msg "Cleanup..."
 rm -rf $PWD/install/certbot-install.sh
-msg "Installed Certbot - \e[32m[DONE]\033[0m"
+msg "Certbot Installed - \e[32m[DONE]\033[0m"
