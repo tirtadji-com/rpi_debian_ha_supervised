@@ -15,23 +15,23 @@ if [ "$NGX" != "${NGX#[Yy]}" ]; then
   # Install Letsencrypt
   $PWD/install/certbot-install.sh
   # Prepare NGINX Config for HASS
-  $PWD/hass/nginx-hass-conf.sh
+  $PWD/install/nginx-hass-conf.sh
 fi
 
 # Install Docker
 $PWD/install/docker-install.sh
 # Install Glances
-$PWD/hass/glances-install.sh
+$PWD/install/glances-install.sh
 # Install Samba
-$PWD/hass/samba-install.sh
+$PWD/install/samba-install.sh
 # Install Crowdsec
 $PWD/install/crowdsec-install.sh
 
 # Begin the main installation
 # Install AgentOS
-$PWD/hass/osagent-install.sh
+$PWD/install/osagent-install.sh
 # Install HASS
-$PWD/docker/hass-install.sh
+$PWD/install/hass-install.sh
 # Install Glances
 
 
