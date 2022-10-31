@@ -29,10 +29,9 @@ $PWD/install/crowdsec-install.sh
 
 # Begin the main installation
 # Install AgentOS
-$PWD/install/osagent-install.sh
+# $PWD/install/osagent-install.sh
 # Install HASS
 $PWD/install/hass-install.sh
-# Install Glances
 
 
 # Cleanup container

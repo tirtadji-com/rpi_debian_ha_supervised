@@ -33,14 +33,16 @@ msg "Installing HA Supervised..."
 apt-get install -y apparmor jq wget curl udisks2 libglib2.0-bin network-manager dbus systemd-journal-remote
 msg "Install HA Supervised Prerequisite Apps - \e[32m[DONE]\033[0m"
 
+# Install AgentOS
+$PWD/install/osagent-install.sh
+
 # rm -rf /etc/machine-id
 # rm -rf /var/lib/dbus/machine-id
 # dbus-uuidgen --ensure=/etc/machine-id
 # dbus-uuidgen --ensure
 # service docker restart
 # msg "Fixed machine-id and restart docker - \e[32m[DONE]\033[0m"
-
-service docker restart
+#service docker restart
 
 # Install HA Supervised
 wget https://github.com/home-assistant/supervised-installer/releases/latest/download/homeassistant-supervised.deb
